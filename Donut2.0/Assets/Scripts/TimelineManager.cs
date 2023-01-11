@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 public class TimelineManager : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class TimelineManager : MonoBehaviour
 
     private void Start()
     {
-        PlayCinematic("Start");
+        StartCoroutine(Test());
     }
 
     public void PlayCinematic(string cinematicName)
@@ -38,5 +39,10 @@ public class TimelineManager : MonoBehaviour
                 return;
             }
         }
+    }
+    private IEnumerator Test()
+    {
+        yield return new WaitForSeconds(2f);
+        PlayCinematic("Snowmobile");
     }
 }
