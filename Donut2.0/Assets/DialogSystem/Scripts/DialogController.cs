@@ -4,4 +4,8 @@ using UnityEngine;
 
 public class DialogController : MonoBehaviour {
     
+    
+    [Header("File")] 
+    public TextAsset csvFile;
+    
 }

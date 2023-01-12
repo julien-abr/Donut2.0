@@ -13,7 +13,9 @@ public class DialogConfig : MonoBehaviour {
         public Sprite talkerSprite;
     }
 
-   // [Header("Characters")] 
+    
+    
+    [Header("Characters")] 
     public string[] characters;
     public Sprite[] charactersSprite;
 
