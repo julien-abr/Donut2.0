@@ -82,7 +82,7 @@ public class DialogController : MonoBehaviour
             CloseDialog();
     }
 
-    public void CloseDialog()
+    private void CloseDialog()
     {
         _idCurrentSentence = 0;
         _dialog = null;
