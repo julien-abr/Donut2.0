@@ -33,6 +33,8 @@ public class DialogConfigEditor : Editor
         DrawSpeakersPanel();
         EditorGUI.EndDisabledGroup();
 
+        DrawDefaultInspector();
+
     }
 
     private void DrawSpeakersDatabasePanel()

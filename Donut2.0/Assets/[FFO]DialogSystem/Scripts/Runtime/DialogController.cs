@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,14 +20,22 @@ public class DialogController : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    public DialogConfig startDialog;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start() {
+        PlayDialog(startDialog);
+    }
+
     public void PlayDialog(DialogConfig dialog)
     {
-        gameObject.SetActive(true);
+        
+        txtNameLeft.gameObject.transform.parent.gameObject.SetActive(true);
+        imgSpriteLeft.gameObject.transform.parent.gameObject.SetActive(true);
 
         //txtNameLeft.text = dialog.nameLeft;
         //imgSpriteLeft.sprite = dialog.spriteLeft;
@@ -50,6 +59,7 @@ public class DialogController : MonoBehaviour
             case DialogConfig.SpeakerConfig.POSITION.LEFT:
                 txtNameLeft.color = Color.black;
                 txtNameRight.color = Color.clear;
+                txtNameLeft.text = speaker.speakerData.label;
                 
                 imgSpriteLeft.color = Color.white;
                 imgSpriteRight.color = Color.gray;
@@ -58,12 +68,14 @@ public class DialogController : MonoBehaviour
             case DialogConfig.SpeakerConfig.POSITION.RIGHT:
                 txtNameLeft.color = Color.clear;
                 txtNameRight.color = Color.black;
-
+                txtNameRight.text = speaker.speakerData.label;
+                
                 imgSpriteLeft.color = Color.gray;
                 imgSpriteRight.color = Color.white;
                 break;
         }
 
+        
         txtSentence.text = sentence.sentence;
 
         _audioSource.Stop();
@@ -76,10 +88,14 @@ public class DialogController : MonoBehaviour
     {
         _idCurrentSentence++;
 
-        if (_idCurrentSentence < _dialog.sentenceConfig.Count) 
+        Debug.Log("dialog " + _dialog);
+        Debug.Log("sentence " + _dialog.sentenceConfig);
+
+        if (_idCurrentSentence < _dialog.sentenceConfig.Count)
             RefreshBox();
-        else
+        else { 
             CloseDialog();
+        }
     }
 
     private void CloseDialog()
@@ -87,6 +103,8 @@ public class DialogController : MonoBehaviour
         _idCurrentSentence = 0;
         _dialog = null;
 
-        gameObject.SetActive(false);
+        txtNameLeft.gameObject.transform.parent.gameObject.SetActive(false);
+        imgSpriteLeft.gameObject.transform.parent.gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 }
