@@ -532,7 +532,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 468597507}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1490668765}
+        m_TargetAssemblyTypeName: DialogController, Assembly-CSharp
+        m_MethodName: NextSentence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &468597507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,7 +1148,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c2079b594028a499277668bd7b4c3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speakers: []
+  speakers:
+  - position: 0
+    speakerDatabase: {fileID: 11400000, guid: 613db0b35996ca2449a5b58eee5308f7, type: 2}
+    speakerData:
+      id: BAD_NIC_01
+      label: Nicolas
+      statuses:
+      - emotion: 0
+        icon: {fileID: 21300000, guid: 10f72847d7af62443afce9a74bb3b9ee, type: 3}
+        audioClip: {fileID: 8300000, guid: 0431a82b20e6ca24295d18c2e1cf7f35, type: 3}
+      - emotion: 1
+        icon: {fileID: 21300000, guid: 10f72847d7af62443afce9a74bb3b9ee, type: 3}
+        audioClip: {fileID: 8300000, guid: 0431a82b20e6ca24295d18c2e1cf7f35, type: 3}
   speakerDatabases:
   - {fileID: 11400000, guid: 613db0b35996ca2449a5b58eee5308f7, type: 2}
   sentenceConfig: []
