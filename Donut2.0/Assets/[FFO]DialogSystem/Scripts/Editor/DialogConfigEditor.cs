@@ -32,8 +32,10 @@ public class DialogConfigEditor : Editor
         EditorGUI.BeginDisabledGroup(_source.speakerDatabases.Count == 0 || _source.speakerDatabases.Exists( x => x == null));
         DrawSpeakersPanel();
         EditorGUI.EndDisabledGroup();
+        
+        DrawSentencePanel();
 
-        DrawDefaultInspector();
+        //DrawDefaultInspector();
 
     }
 
@@ -173,6 +175,55 @@ public class DialogConfigEditor : Editor
             if (GUILayout.Button(new GUIContent("Add new speaker", "")))
             {
                 _source.speakers.Add(new DialogConfig.SpeakerConfig());
+            }
+        }
+    }
+
+    private void DrawSentencePanel()
+    {
+        EditorGUILayout.BeginVertical("box");
+        DrawHeader();
+        DrawBody();
+        DrawFooter();
+        EditorGUILayout.EndVertical();
+
+        void DrawHeader()
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Sentences",_titleStyle);
+            
+            if (GUILayout.Button(new GUIContent("X", "Clear all sentences"), GUILayout.Width(30))) {
+                if(EditorUtility.DisplayDialog("Delete all sentences", "Do you want delete all sentences ?", "Yes", "No"))
+                    _source.sentenceConfig.Clear();
+            }
+            
+            EditorGUILayout.EndHorizontal();
+        }
+
+        void DrawBody() {
+            if (_source.sentenceConfig.Count != 0) {
+                for (int i = 0; i < _source.sentenceConfig.Count; i++) {
+                    SentenceConfig sentenceConfig = _source.sentenceConfig[i];
+
+                    EditorGUILayout.BeginVertical();
+                        EditorGUILayout.BeginHorizontal();
+                            EditorGUILayout.LabelField("Sentence : ",GUILayout.Width(70));
+                            sentenceConfig.sentence = EditorGUILayout.TextArea(sentenceConfig.sentence);
+                        EditorGUILayout.EndHorizontal();
+                        
+                        
+                        EditorGUILayout.BeginHorizontal();
+                            EditorGUILayout.LabelField("Voice : ",GUILayout.Width(70));
+                            sentenceConfig.audioClip = EditorGUILayout.ObjectField(sentenceConfig.audioClip,typeof(AudioClip),false,GUILayout.Width(150)) as AudioClip;
+                        EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.EndVertical();
+                }
+            }
+        }
+
+        void DrawFooter() {
+            if (GUILayout.Button(new GUIContent("Add new sentences", ""))) {
+                _source.sentenceConfig.Add(new SentenceConfig());
             }
         }
     }
