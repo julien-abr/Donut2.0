@@ -26,7 +26,9 @@ public class TimelineManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Test());
+        StartCoroutine(Test("Snowmobile", 2f));
+        StartCoroutine(Test("FlyingBirds", 0.5f));
+        StartCoroutine(Test("ImmersiveCam", 0f));
     }
 
     public void PlayCinematic(string cinematicName)
@@ -40,9 +42,9 @@ public class TimelineManager : MonoBehaviour
             }
         }
     }
-    private IEnumerator Test()
+    private IEnumerator Test(string cinematic, float duration)
     {
-        yield return new WaitForSeconds(2f);
-        PlayCinematic("Snowmobile");
+        yield return new WaitForSeconds(duration);
+        PlayCinematic(cinematic);
     }
 }
